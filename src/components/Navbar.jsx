@@ -24,22 +24,42 @@ export default function Navbar() {
   const navLinks = (
     <>
       <li>
-        <a href="#home" className="hover:text-blue-400 focus:text-blue-400 transition">
+        <a
+          href="#home"
+          className="hover:text-blue-400 focus:text-blue-400 transition"
+        >
           Home
         </a>
       </li>
       <li>
-        <a href="#about" className="hover:text-blue-400 focus:text-blue-400 transition">
+        <a
+          href="#about"
+          className="hover:text-blue-400 focus:text-blue-400 transition"
+        >
           About
         </a>
       </li>
       <li>
-        <a href="#projects" className="hover:text-blue-400 focus:text-blue-400 transition">
+        <a
+          href="#projects"
+          className="hover:text-blue-400 focus:text-blue-400 transition"
+        >
           Projects
         </a>
       </li>
       <li>
-        <a href="#contact" className="hover:text-blue-400 focus:text-blue-400 transition">
+        <a
+          href="#certificates"
+          className="hover:text-blue-400 focus:text-blue-400 transition"
+        >
+          Certificates
+        </a>
+      </li>
+      <li>
+        <a
+          href="#contact"
+          className="hover:text-blue-400 focus:text-blue-400 transition"
+        >
           Contact
         </a>
       </li>
@@ -49,7 +69,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full bg-black/60 backdrop-blur-md z-50 shadow-md">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-white text-2xl font-bold tracking-wide cursor-default select-none">Abdalla</h1>
+        <h1 className="text-white text-2xl font-bold tracking-wide cursor-default select-none">
+          Abdalla
+        </h1>
 
         {/* Desktop nav */}
         <ul className="hidden md:flex space-x-10 text-white text-sm md:text-base font-medium items-center">

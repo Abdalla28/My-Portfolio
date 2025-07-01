@@ -1,37 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import screenshot from "../images/Screenshot 2023-07-08 193955.png";
-import screenshot2 from "../images/Screenshot 2025-06-22 185104.png";
+import screenshot from "../images/Screenshot 2023-07-08 193955.png"; //Duck's Row
+import screenshot2 from "../images/Screenshot 2025-06-22 185104.png"; //Bimar
+import screenshot3 from "../images/Screenshot 2025-07-01 212827.png"; //SWNW
+import screenshot4 from "../images/Screenshot 2025-07-01 213636.png"; //Used Cars Data Analytics Dashboard
+import screenshot5 from "../images/image.png"; //Taxi Total Amount Prediction
+import screenshot6 from "../images/Screenshot 2025-07-01 214222.png"; //Wamo
+import screenshot7 from "../images/Screenshot 2025-04-12 173242.png"; //CipherCrack
 const projects = [
   {
-    title: "My Portfolio Website",
-    image: screenshot,
-    description:
-      "A creative personal portfolio built with React and Tailwind CSS.",
-    github: "https://github.com/Abdalla28/My-Portfolio",
-    live: "https://your-portfolio-link.com",
-    details:
-      "Built using React, Tailwind CSS, and Framer Motion for smooth animations. Responsive and accessible design.",
-  },
-  {
-    title: "E-commerce Store",
+    title: "Bimar",
     image: screenshot2,
-    description: "Fully responsive store with cart and filtering features.",
-    github: "https://github.com/Abdalla28/ecommerce",
-    live: "https://your-store-link.com",
+    description:
+      "Full-stack healthtech app for managing patient records, AI doctor recommendations, appointment scheduling, chat, and virtual consultations.",
+    github: "https://github.com/Kareem2003/Bimar",
+    live: "https://drive.google.com/file/d/1Vo0HxnLfla4KZfaBzVSgJA4-FXWdOFpW/view?usp=sharing",
     details:
-      "Includes product filtering, shopping cart, and payment integration. Developed with React and Context API.",
+      "Built with AI-based algorithms, real-time chat, and virtual consultations to enhance healthcare experience.",
+    category: "Web & Mobile App",
   },
   {
-    title: "My Portfolio Website",
-    image: screenshot,
+    title: "Wamo",
+    image: screenshot6,
     description:
-      "A creative personal portfolio built with React and Tailwind CSS.",
-    github: "https://github.com/Abdalla28/My-Portfolio",
-    live: "https://your-portfolio-link.com",
+      "E-commerce platform with advanced search, filtering, recommendations, secure transactions, wish lists, and order tracking.",
+    github: "",
+    live: "https://wamohub.com/en/index.php",
     details:
-      "Built using React, Tailwind CSS, and Framer Motion for smooth animations. Responsive and accessible design.",
+      "User-friendly shopping with tailored promotions and customer reviews.",
+    category: "Web App",
   },
+
+  {
+    title: "Duck's Row",
+    image: screenshot, // Replace with your image
+    description:
+      "Dynamic website for planning hangouts based on budget and preferences. HTML, CSS, JS, Bootstrap, jQuery, Ajax, MySQL.",
+    github: "https://github.com/Duck-s-Row/Duck-s-Row.github.io",
+    live: "https://drive.google.com/file/d/1ik9xPV1pVP98K5UzzxmzBbhck7Wtwn1q/view",
+    details: "Interactive planning with robust database management.",
+    category: "Web App",
+  },
+  {
+    title: "Taxi Total Amount Prediction",
+    image: screenshot5,
+    description:
+      "ML project to predict NYC taxi fares using regression, Random Forest, SVM, MLP, Tabnet, Wide & Deep, Logistic Regression.",
+    github: "https://github.com/3bdalrahman/Taxi-Total-amount-prediction",
+    live: "",
+    details: "Feature engineering and model evaluation with RMSE and R².",
+    category: "Data Science",
+  },
+
+  {
+    title: "SWNW",
+    image: screenshot3,
+    description:
+      "Graphic design for an immersive Ancient Egypt event: exhibits, workshops, performances.",
+    github: "",
+    live: "https://www.behance.net/gallery/208866061/SWNW",
+    details: "Branding and visual identity for a cultural event.",
+    category: "Design",
+  },
+  {
+    title: "CipherCrack",
+    image: screenshot7,
+    description:
+      "Cross-platform app for encoding/decoding classical ciphers (Caesar, Vigenère, Rail Fence) and cryptanalysis.",
+    github: "https://github.com/Abdalla28/IOT",
+    live: "",
+    details:
+      "React Native app with encryption, decryption, and key-breaking features.",
+    category: "Mobile App",
+  },
+  {
+    title: "Used Cars Data Analytics Dashboard",
+    image: screenshot4,
+    description:
+      "Used Cars Dashboard: Interactive data visualization with Streamlit, Pandas, and Plotly for exploring prices, fuel types, gearboxes, and brands.",
+    github: "https://github.com/Abdalla28/Used-Cars",
+    live: "https://used-cars-ibvqqkkz5npyomiyg2pjps.streamlit.app/",
+    details:
+      "Started with a real-world Kaggle dataset, performed extensive cleaning (missing values, outliers, column fixes), and built an interactive Streamlit app for data exploration. Features dynamic filters, real-time updates, and insightful visualizations.",
+    category: "Data Science",
+  },
+  {
+    title: "Wgabat",
+    image: "",
+    description:
+      "Mobile app for NCTU students to order food from nearby restaurants. Built with Kotlin, XML, Room DB, and Firebase.",
+    github: "https://github.com/OmarEid10/wagbat",
+    live: "",
+    details:
+      "Seamless food ordering experience using local and cloud databases.",
+    category: "Mobile App",
+  },
+];
+
+const categories = [
+  "All",
+  ...Array.from(new Set(projects.map((p) => p.category))),
 ];
 
 const containerVariants = {
@@ -69,6 +137,13 @@ const floatAnimation = {
 };
 
 export default function Projects() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
+
   return (
     <section
       id="projects"
@@ -84,6 +159,25 @@ export default function Projects() {
           My Projects
         </motion.h2>
 
+        {/* Category Tabs */}
+        <div className="flex justify-center gap-4 mb-10 flex-wrap">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full font-semibold transition
+                ${
+                  activeCategory === cat
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white"
+                }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
         <motion.div
           className="grid gap-14 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
@@ -91,12 +185,12 @@ export default function Projects() {
           whileInView="visible"
           viewport={{ amount: 0.3 }}
         >
-          {projects.map((project, idx) => {
+          {filteredProjects.map((project, idx) => {
             const direction = idx % 2 === 0 ? "left" : "right";
             return (
               <motion.div
                 key={idx}
-                className="relative rounded-3xl shadow-xl bg-white dark:bg-gray-800 cursor-pointer overflow-hidden"
+                className="relative rounded-3xl shadow-xl bg-white dark:bg-gray-800 cursor-pointer overflow-hidden flex flex-col h-full"
                 variants={{
                   hidden: cardVariants[direction],
                   visible: cardVariants.visible,
@@ -115,7 +209,7 @@ export default function Projects() {
                   {...floatAnimation}
                 />
 
-                <div className="p-8 text-left">
+                <div className="p-8 text-left flex flex-col flex-1">
                   <motion.h3
                     className="text-2xl font-bold mb-3 text-gray-900 dark:text-white"
                     initial={{ opacity: 0, y: 20 }}
@@ -125,7 +219,7 @@ export default function Projects() {
                     {project.title}
                   </motion.h3>
                   <motion.p
-                    className="text-gray-700 dark:text-gray-300 mb-6"
+                    className="text-gray-700 dark:text-gray-300 mb-6 flex-1"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}
@@ -133,31 +227,57 @@ export default function Projects() {
                     {project.description}
                   </motion.p>
 
-                  <div className="flex gap-6">
-                    {["github", "live"].map((key) => {
-                      const url = project[key];
-                      const label = key === "github" ? "GitHub" : "Live Demo";
-                      const baseColors = {
-                        github:
-                          "bg-gradient-to-r from-gray-800 to-gray-600 text-white",
-                        live: "bg-gradient-to-r from-green-500 to-green-700 text-white",
-                      };
-                      return (
-                        <motion.a
-                          key={key}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`px-5 py-2 rounded-full font-semibold shadow-lg transition-transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-400
-                          ${baseColors[key]}
-                          hover:from-blue-500 hover:to-purple-600`}
-                          whileTap={{ scale: 0.9 }}
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          {label}
-                        </motion.a>
-                      );
-                    })}
+                  <div className="flex gap-6 mt-auto">
+                    {project.title === "SWNW" ? (
+                      <motion.a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-5 py-2 rounded-full font-semibold shadow-lg bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-purple-500 hover:to-pink-500 transition-transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-400"
+                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        Project in Behance
+                      </motion.a>
+                    ) : (
+                      ["github", "live"].map((key) => {
+                        const url = project[key];
+                        let label = "Demo";
+                        if (key === "live" && project.title === "Wamo") {
+                          label = "Live Demo";
+                        } else if (
+                          key === "live" &&
+                          project.title === "Used Cars Data Analytics Dashboard"
+                        ) {
+                          label = "Streamlit";
+                        } else if (key === "live") {
+                          label = "Demo";
+                        } else if (key === "github") {
+                          label = "GitHub";
+                        }
+                        if (!url) return null;
+                        const baseColors = {
+                          github:
+                            "bg-gradient-to-r from-gray-800 to-gray-600 text-white",
+                          live: "bg-gradient-to-r from-green-500 to-green-700 text-white",
+                        };
+                        return (
+                          <motion.a
+                            key={key}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`px-5 py-2 rounded-full font-semibold shadow-lg transition-transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-blue-400
+                            ${baseColors[key]}
+                            hover:from-blue-500 hover:to-purple-600`}
+                            whileTap={{ scale: 0.9 }}
+                            whileHover={{ scale: 1.1 }}
+                          >
+                            {label}
+                          </motion.a>
+                        );
+                      })
+                    )}
                   </div>
                 </div>
 
