@@ -106,7 +106,7 @@ export default function Hero() {
           className="text-xl md:text-2xl mb-8 text-gray-300 max-w-xl mx-auto drop-shadow-sm"
           variants={itemVariants}
         >
-          <AnimatedText text="Front-End Developer & Graphic Designer ✨" />
+          <AnimatedText text="Front-End Developer & Machine Learning Engineer ✨" />
         </motion.p>
 
         <motion.div
