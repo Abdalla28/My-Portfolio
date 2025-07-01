@@ -5,7 +5,7 @@ export default function Hero() {
     <div className="text-center max-w-2xl">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">Abdalla Gamal</h1>
         <p className="text-xl md:text-2xl mb-6">
-        
+        Front-End Developer & Graphic Designer ✨
         </p>
         <a
         href="#projects"
