@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaBehance } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const icons = [
@@ -13,19 +13,11 @@ const icons = [
   },
   {
     icon: <FaLinkedin />,
-    href: "https://www.linkedin.com/in/abdalla-gamal",
+    href: "https://www.linkedin.com/in/abdalla-gamal-b24733228/",
     baseColorLight: "text-blue-700",
     hoverColorLight: "hover:text-blue-900",
     baseColorDark: "dark:text-blue-400",
     hoverColorDark: "dark:hover:text-blue-200",
-  },
-  {
-    icon: <FaBehance />,
-    href: "https://www.behance.net/abdallagamal",
-    baseColorLight: "text-blue-500",
-    hoverColorLight: "hover:text-blue-700",
-    baseColorDark: "dark:text-blue-300",
-    hoverColorDark: "dark:hover:text-blue-100",
   },
 ];
 

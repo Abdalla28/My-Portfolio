@@ -16,7 +16,6 @@ import {
   SiC,
   SiCplusplus,
   SiMysql,
-  SiPostgresql,
   SiTensorflow,
   SiKeras,
   SiAdobe,
@@ -83,8 +82,16 @@ const skills = [
   { icon: <SiKeras size={40} />, name: "Keras", category: "Data Science" },
 
   // Mobile Development
-  { icon: <FaJava size={40} />, name: "Kotlin", category: "Mobile Development" },
-  { icon: <VscFileCode size={40} />, name: "XML", category: "Mobile Development" },
+  {
+    icon: <FaJava size={40} />,
+    name: "Kotlin",
+    category: "Mobile Development",
+  },
+  {
+    icon: <VscFileCode size={40} />,
+    name: "XML",
+    category: "Mobile Development",
+  },
   {
     icon: <FaReact size={40} />,
     name: "React Native",
@@ -177,10 +184,11 @@ export default function About() {
           <span className="font-bold text-blue-600 dark:text-blue-400">
             Abdalla Gamal
           </span>{" "}
-          — a passionate front-end developer and creative graphic designer based
-          in Egypt. I enjoy crafting visually appealing, accessible, and
-          responsive web interfaces using modern technologies like React,
-          Tailwind CSS, and JavaScript.
+          — a Full-Stack Software Engineer with experience in web development,
+          machine learning, and IoT systems. I build scalable applications using
+          technologies like React, Node.js, Python, and Streamlit. From smart
+          irrigation to admin panels, I create efficient and impactful software
+          solutions.
         </motion.p>
       </div>
 

@@ -34,14 +34,6 @@ const AnimatedText = ({ text }) => {
   );
 };
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.3, when: "beforeChildren" },
-  },
-};
-
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 60 } },
@@ -68,32 +60,43 @@ const headlineVariants = {
 };
 
 export default function Hero() {
+  // Detect mobile device
+  const isMobile = window.innerWidth < 768;
+
   return (
     <motion.section
       className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black px-4 text-white overflow-hidden"
       variants={heroVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.5 }}
+      viewport={{ amount: 0.5, once: isMobile }}
     >
-      {/* خطوط خلفية متحركة */}
+      {/* Responsive background blobs */}
       <motion.div
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-tr from-blue-700 to-purple-700 opacity-15 blur-3xl rounded-full"
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-40 xs:w-56 xs:h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 max-w-full bg-gradient-to-tr from-blue-700 to-purple-700 opacity-15 blur-3xl rounded-full"
         animate={{ rotate: 360 }}
-        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+        transition={{
+          repeat: isMobile ? 0 : Infinity,
+          duration: 60,
+          ease: "linear",
+        }}
       />
       <motion.div
-        className="absolute bottom-0 right-0 w-72 h-72 bg-pink-700 opacity-10 blur-3xl rounded-full"
+        className="absolute bottom-0 right-0 w-40 h-40 sm:w-72 sm:h-72 max-w-full bg-pink-700 opacity-10 blur-3xl rounded-full"
         animate={{ scale: [1, 1.1, 1] }}
-        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+        transition={{
+          repeat: isMobile ? 0 : Infinity,
+          duration: 4,
+          ease: "easeInOut",
+        }}
       />
 
       <motion.div
-        className="text-center max-w-3xl z-10"
+        className="flex flex-col items-center justify-center text-center max-w-full sm:max-w-3xl z-10 mx-auto"
         variants={headlineVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ amount: 0.7 }}
+        viewport={{ amount: 0.7, once: true }}
       >
         <motion.h1
           className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text drop-shadow-lg"
@@ -103,10 +106,10 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl mb-8 text-gray-300 max-w-xl mx-auto drop-shadow-sm"
+          className="text-xl md:text-2xl mb-10 text-gray-300 drop-shadow-sm text-center break-words max-w-full sm:max-w-xl mx-auto"
           variants={itemVariants}
         >
-          <AnimatedText text="Front-End Developer & Machine Learning Engineer ✨" />
+          <AnimatedText text="Software Engineer ✨" />
         </motion.p>
 
         <motion.div
