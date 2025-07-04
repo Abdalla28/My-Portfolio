@@ -1,6 +1,8 @@
 body {
-  cursor: none; /* نخفي الكيرسر الافتراضي */
+  cursor: none;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: linear-gradient(135deg, #f0e7ff 0%, #e0f2fe 100%);
 }
 
 .custom-cursor {
@@ -13,11 +15,32 @@ body {
   z-index: 9999;
   transition: transform 0.15s ease, background-color 0.3s ease, border-color 0.3s ease;
   transform: translate(-50%, -50%);
-  mix-blend-mode: difference; /* يخلي الكيرسر يظهر بشكل مميز على كل الخلفيات */
+  mix-blend-mode: difference;
 }
 
 .custom-cursor.hovered {
   transform: translate(-50%, -50%) scale(1.8);
   background-color: rgba(255, 255, 255, 0.3);
   border-color: #a78bfa;
+}
+
+*,
+*:hover,
+*:active,
+*:focus {
+  cursor: none !important;
+}
+
+@media (max-width: 767px) {
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+  body,
+  *,
+  *:hover,
+  *:active,
+  *:focus {
+    cursor: auto !important;
+  }
 }

@@ -1,33 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaReact,
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaGitAlt,
-  FaFigma,
-} from "react-icons/fa";
-import { SiTailwindcss, SiAdobephotoshop, SiPhp } from "react-icons/si";
-import { VscCode } from "react-icons/vsc";
-
-import {
-  SiPython,
-  SiC,
-  SiCplusplus,
-  SiMysql,
-  SiTensorflow,
-  SiKeras,
-  SiAdobe,
-} from "react-icons/si";
-
-import { FaJava } from "react-icons/fa";
-import { VscFileCode } from "react-icons/vsc";
-
-import { FaPython } from "react-icons/fa";
-import { VscTools } from "react-icons/vsc";
-
-import { FaMicrosoft } from "react-icons/fa";
+import { FaReact, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaFigma, FaJava, FaPython, FaMicrosoft} from "react-icons/fa";
+import { SiTailwindcss, SiAdobephotoshop, SiPhp, SiPython, SiC, SiCplusplus, SiMysql, SiTensorflow, SiKeras, SiAdobe } from "react-icons/si";
+import { VscCode, VscFileCode, VscTools } from "react-icons/vsc";
 
 const skills = [
   // Web Development
@@ -35,16 +10,8 @@ const skills = [
   { icon: <FaCss3Alt size={40} />, name: "CSS3", category: "Web Development" },
   { icon: <FaJs size={40} />, name: "JavaScript", category: "Web Development" },
   { icon: <SiPhp size={40} />, name: "PHP", category: "Web Development" },
-  {
-    icon: <FaReact size={40} />,
-    name: "React.js",
-    category: "Web Development",
-  },
-  {
-    icon: <SiTailwindcss size={40} />,
-    name: "Tailwind CSS",
-    category: "Web Development",
-  },
+  { icon: <FaReact size={40} />, name: "React.js", category: "Web Development" },
+  { icon: <SiTailwindcss size={40} />, name: "Tailwind CSS", category: "Web Development" },
 
   // Tools
   { icon: <FaGitAlt size={40} />, name: "Git & GitHub", category: "Tools" },
@@ -64,52 +31,23 @@ const skills = [
   // Data Science & ML
   { icon: <SiPython size={40} />, name: "Pandas", category: "Data Science" },
   { icon: <SiPython size={40} />, name: "NumPy", category: "Data Science" },
-  {
-    icon: <SiPython size={40} />,
-    name: "Scikit-learn",
-    category: "Data Science",
-  },
-  {
-    icon: <SiPython size={40} />,
-    name: "Matplotlib",
-    category: "Data Science",
-  },
-  {
-    icon: <SiTensorflow size={40} />,
-    name: "TensorFlow",
-    category: "Data Science",
-  },
+  { icon: <SiPython size={40} />, name: "Scikit-learn", category: "Data Science" },
+  { icon: <SiPython size={40} />, name: "Matplotlib", category: "Data Science" },
+  { icon: <SiTensorflow size={40} />, name: "TensorFlow", category: "Data Science" },
   { icon: <SiKeras size={40} />, name: "Keras", category: "Data Science" },
 
   // Mobile Development
-  {
-    icon: <FaJava size={40} />,
-    name: "Kotlin",
-    category: "Mobile Development",
-  },
-  {
-    icon: <VscFileCode size={40} />,
-    name: "XML",
-    category: "Mobile Development",
-  },
-  {
-    icon: <FaReact size={40} />,
-    name: "React Native",
-    category: "Mobile Development",
-  },
+  { icon: <FaJava size={40} />, name: "Kotlin", category: "Mobile Development" },
+  { icon: <VscFileCode size={40} />, name: "XML", category: "Mobile Development" },
+  { icon: <FaReact size={40} />, name: "React Native", category: "Mobile Development" },
 
   // Graphic Design
   { icon: <FaFigma size={40} />, name: "Figma", category: "Design" },
-  {
-    icon: <SiAdobephotoshop size={40} />,
-    name: "Photoshop",
-    category: "Design",
-  },
+  { icon: <SiAdobephotoshop size={40} />, name: "Photoshop", category: "Design" },
   { icon: <SiAdobe size={40} />, name: "Illustrator", category: "Design" },
   { icon: <SiAdobe size={40} />, name: "InDesign", category: "Design" },
 ];
 
-// استخراج التصنيفات تلقائيًا بدون تكرار
 const uniqueCategories = [...new Set(skills.map((skill) => skill.category))];
 
 function SkillCard({ skill }) {
@@ -133,8 +71,6 @@ function SkillCard({ skill }) {
 
 export default function About() {
   const [activeCategory, setActiveCategory] = useState(uniqueCategories[0]);
-
-  // Variants لتأثير stagger عند عرض المهارات
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -159,10 +95,10 @@ export default function About() {
     <motion.section
       id="about"
       className="cursor-default min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-800 dark:text-white px-6 py-20 flex items-center justify-center flex-col"
-      initial={{ opacity: 0, y: 60, scale: 0.98, rotate: -2 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, type: "spring", bounce: 0.3 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="max-w-3xl text-center mb-20">
         <motion.h2
