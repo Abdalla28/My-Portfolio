@@ -35,6 +35,9 @@ function App() {
         <Contact />
         <ScrollToTop />
         <Footer />
+
+        <Analytics />
+        <SpeedInsights />
       </motion.div>
     </AnimatePresence>
   );
