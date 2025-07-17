@@ -43,12 +43,12 @@ export default function ThreeScene() {
     const wallTexture = textureLoader.load("/textures/stone.jpg");
 
     const floorMaterial = new THREE.MeshStandardMaterial({
-      color: 0x111111,
-      roughness: 0.4,
-      metalness: 0.5,
+      color: 0xf5f5f5,
+      roughness: 0.3,
+      metalness: 0.2,
     });
 
-    const wallColors = [0x444444, 0x666666, 0x888888];
+    const wallColors = [0xffffff, 0xfafafa, 0xf0f0f0];
     const mazeSize = 12;
     const tileSize = 4;
 
@@ -77,9 +77,9 @@ export default function ThreeScene() {
             new THREE.BoxGeometry(tileSize, height, tileSize),
             new THREE.MeshStandardMaterial({
               color: wallColors[Math.floor(Math.random() * wallColors.length)],
-              roughness: 0.8,
-              metalness: 0.3,
-              map: wallTexture,
+              roughness: 0.5,
+              metalness: 0.2,
+              map: null,
             })
           );
           wall.position.set(x * tileSize, height / 2, z * tileSize);
