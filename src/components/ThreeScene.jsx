@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { TextureLoader } from "three";
 
 export default function ThreeScene() {
   const mountRef = useRef(null);
@@ -39,8 +38,6 @@ export default function ThreeScene() {
     dirLight.castShadow = true;
     scene.add(dirLight);
 
-    const textureLoader = new TextureLoader();
-    const wallTexture = textureLoader.load("/textures/stone.jpg");
 
     const floorMaterial = new THREE.MeshStandardMaterial({
       color: 0xf5f5f5,
