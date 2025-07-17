@@ -45,24 +45,28 @@ function CustomCursor() {
   // Animate trailing cursor position
   useEffect(() => {
     let animationFrame;
+    let lastTime = 0;
+    const fps = 60; // You can lower this to 45 or 30 for even lighter
+    const frameDuration = 1000 / fps;
 
-    const followMouse = () => {
-      const { x, y } = trailingRef.current;
-      const dx = position.x - x;
-      const dy = position.y - y;
-      trailingRef.current = {
-        x: x + dx * 0.15,
-        y: y + dy * 0.15,
-      };
-      if (cursorRef.current) {
-        // Center the cursor: move to mouse, then offset by -50% width/height
-        cursorRef.current.style.transform = `translate3d(${trailingRef.current.x}px, ${trailingRef.current.y}px, 0) translate(-50%, -50%)`;
+    const followMouse = (now) => {
+      if (!lastTime || now - lastTime > frameDuration) {
+        const { x, y } = trailingRef.current;
+        const dx = position.x - x;
+        const dy = position.y - y;
+        trailingRef.current = {
+          x: x + dx * 1,
+          y: y + dy * 1,
+        };
+        if (cursorRef.current) {
+          cursorRef.current.style.transform = `translate3d(${trailingRef.current.x}px, ${trailingRef.current.y}px, 0) translate(-50%, -50%)`;
+        }
+        lastTime = now;
       }
       animationFrame = requestAnimationFrame(followMouse);
     };
 
-    followMouse();
-
+    animationFrame = requestAnimationFrame(followMouse);
     return () => cancelAnimationFrame(animationFrame);
   }, [position]);
 
@@ -84,6 +88,7 @@ function CustomCursor() {
           transition: "width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease",
           mixBlendMode: "difference",
           zIndex: 9999,
+          willChange: "transform",
         }}
       />
 

@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaUser, FaEnvelope, FaPaperPlane, FaLinkedin, FaGithub, FaPhone } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-
+import ContactAurora from "./ContactAurora";
 export default function Contact() {
   const form = useRef();
   const [success, setSuccess] = useState(null);
@@ -31,103 +32,103 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
-      className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-6"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ amount: 0.3 }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
-      }}
+      className="relative min-h-screen flex items-center justify-center bg-black text-white px-4 overflow-hidden"
     >
-      <div className="max-w-3xl mx-auto">
-        <motion.h2
-          className="text-4xl md:text-5xl font-extrabold text-center mb-12 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-        >
-          Contact Me
-        </motion.h2>
+      {/* Aurora / Galaxy Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <ContactAurora />
+      </div>
 
-        <motion.form
+      {/* Split Card */}
+      <motion.div
+        className="relative z-10 w-full max-w-5xl mx-auto flex flex-col md:flex-row rounded-3xl bg-white/10 border border-white/10 shadow-2xl backdrop-blur-2xl overflow-hidden my-8 md:my-16"
+        style={{ minHeight: 'min(90vh, 700px)' }}
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, type: "spring", bounce: 0.3 }}
+      >
+        {/* Left: Info & Socials */}
+        <div className="flex-1 flex flex-col justify-center items-center gap-8 p-10 bg-gradient-to-br from-purple-900/40 via-blue-900/30 to-black/60">
+          <motion.h2
+            className="text-4xl font-extrabold text-center mb-2 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Let’s Connect
+          </motion.h2>
+          <motion.p
+            className="text-lg text-center text-gray-200 max-w-xs"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            I’d love to hear from you! Reach out for collaborations, questions, or just to say hi.
+          </motion.p>
+          <div className="flex gap-6 mt-4">
+            <a href="mailto:kontyabdalla@gmail.com" target="_blank" rel="noopener noreferrer" className="text-2xl text-blue-300 hover:text-blue-500 transition-all">
+              <FaEnvelope />
+            </a>
+            <a href="https://www.linkedin.com/in/abdalla-gamal-b24733228/" target="_blank" rel="noopener noreferrer" className="text-2xl text-blue-400 hover:text-blue-600 transition-all">
+              <FaLinkedin />
+            </a>
+            <a href="https://github.com/Abdalla28" target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-300 hover:text-white transition-all">
+              <FaGithub />
+            </a>
+            <a href="tel:+201025226820" className="text-2xl text-green-300 hover:text-green-500 transition-all">
+              <FaPhone />
+            </a>
+          </div>
+        </div>
+        {/* Right: Form */}
+        <form
           ref={form}
           onSubmit={sendEmail}
-          className="grid gap-6 bg-gray-800/30 p-6 rounded-xl shadow-2xl backdrop-blur-md"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, type: "spring", bounce: 0.3 }}
+          className="flex-1 p-10 flex flex-col justify-center gap-6 bg-white/10 dark:bg-gray-900/30 backdrop-blur-xl"
         >
-          {["user_name", "user_email"].map((name, idx) => (
-            <motion.input
-              key={name}
-              type={name === "user_email" ? "email" : "text"}
-              name={name}
-              placeholder={name === "user_email" ? "Your Email" : "Your Name"}
-              required
-              className="bg-gray-900/80 border border-gray-700 px-5 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              whileFocus={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                delay: 0.1 * idx + 0.3,
-              }}
-            />
+          {[{ name: "user_name", placeholder: "Your Name", icon: <FaUser /> }, { name: "user_email", placeholder: "Your Email", icon: <FaEnvelope /> }].map(({ name, placeholder, icon }, idx) => (
+            <div className="relative" key={name}>
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white opacity-60">
+                {icon}
+              </span>
+              <input
+                type={name === "user_email" ? "email" : "text"}
+                name={name}
+                placeholder={placeholder}
+                required
+                className="w-full bg-black/30 border border-white/20 rounded-lg pl-12 pr-4 py-3 placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+              />
+            </div>
           ))}
-
-          <motion.textarea
+          <textarea
             name="message"
             rows="5"
             placeholder="Your Message"
             required
-            className="bg-gray-900/80 border border-gray-700 px-5 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 resize-none"
-            whileFocus={{ scale: 1.02 }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 300, delay: 0.5 }}
+            className="w-full bg-black/30 border border-white/20 rounded-lg px-5 py-3 placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
           />
-
-          <motion.button
+          <button
             type="submit"
-            className="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold rounded-lg shadow-lg transition-all duration-300"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 20px rgba(168,85,247,0.5)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
+            className="w-full flex items-center justify-center gap-3 py-3 mt-2 rounded-lg font-bold text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-2xl transition-all duration-300"
           >
-            Send Message 🚀
-          </motion.button>
-
+            <FaPaperPlane className="text-lg" /> Send Message
+          </button>
           <AnimatePresence>
-            {success === true && (
+            {success !== null && (
               <motion.p
-                className="text-green-400 mt-4 text-center font-medium"
+                className={`text-center mt-2 font-medium ${success ? "text-green-400" : "text-red-400"}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                Message sent successfully ✅
-              </motion.p>
-            )}
-            {success === false && (
-              <motion.p
-                className="text-red-400 mt-4 text-center font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                Failed to send. Try again ❌
+                {success
+                  ? "Message sent successfully ✅"
+                  : "Failed to send. Please try again ❌"}
               </motion.p>
             )}
           </AnimatePresence>
-        </motion.form>
-      </div>
+        </form>
+      </motion.div>
     </motion.section>
   );
 }

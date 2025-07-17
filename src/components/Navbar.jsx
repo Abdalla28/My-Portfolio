@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import '../GlobalStyles.css';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

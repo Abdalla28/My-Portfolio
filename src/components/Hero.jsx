@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
-import avatar from "../images/avatar.png";
+import ThreeScene from "./ThreeScene"; 
+import '../GlobalStyles.css';
+
 const AnimatedText = ({ text }) => {
   const letters = Array.from(text || "");
   const child = {
@@ -68,11 +70,16 @@ export default function Hero() {
 
   return (
     <motion.section
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-20 py-10 bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-20 py-10 bg-transparent text-white overflow-hidden"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
+      {/* Three.js background */}
+      <div className="absolute inset-0 w-full h-full -z-10">
+        <ThreeScene />
+      </div>
+
       {/* Left Side */}
       <motion.div
         className="w-full md:w-1/2 flex flex-col items-center md:items-start justify-center text-center md:text-left z-10"
@@ -114,82 +121,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Right Side: Glowing Orb (hidden on mobile) */}
-      <motion.div
-        className="hidden md:flex w-full md:w-1/2 h-[300px] md:h-[500px] mt-10 md:mt-0 justify-center items-center"
-        initial={{ x: 40, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div
-          className="relative w-64 h-64 md:w-80 md:h-80 rounded-full
-    bg-[radial-gradient(circle,_#6366f1,_#a21caf,_#0ea5e9)]
-    dark:bg-[radial-gradient(circle,_#222,_#333,_#111)]
-    shadow-[0_0_50px_15px_rgba(147,51,234,0.3)] flex items-center justify-center"
-          animate={{
-            scale: [1, 1.05, 1],
-            rotate: [0, 10, -10, 0],
-            boxShadow: [
-              "0 0 60px 10px rgba(147,51,234,0.3)",
-              "0 0 90px 25px rgba(59,130,246,0.2)",
-              "0 0 60px 10px rgba(147,51,234,0.3)",
-            ],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          whileHover={{
-            scale: 1.08,
-            boxShadow: "0 0 80px 30px #a21caf, 0 0 120px 40px #6366f1",
-            filter: "brightness(1.15)",
-          }}
-        >
-          {/* Creative avatar or emoji in the center */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <img
-              src={avatar}
-              alt="Abdalla Gamal"
-              className="w-72 h-72 md:w-80 md:h-80 rounded-full shadow-2xl object-cover"
-            />
-          </div>
-
-          {/* Floating icons around the orb */}
-          <motion.div
-            className="absolute text-2xl"
-            style={{ top: "-10px", right: "-10px" }}
-            animate={{ y: [0, -10, 0], rotate: [0, 15, -15, 0] }}
-            transition={{ repeat: Infinity, duration: 5 }}
-          >
-            ⚛️
-          </motion.div>
-          <motion.div
-            className="absolute text-2xl"
-            style={{ bottom: "-10px", left: "-10px" }}
-            animate={{ y: [0, 10, 0], rotate: [0, -15, 15, 0] }}
-            transition={{ repeat: Infinity, duration: 6 }}
-          >
-            🎨
-          </motion.div>
-          <motion.div
-            className="absolute text-2xl"
-            style={{ top: "50%", left: "-15px", transform: "translateY(-50%)" }}
-            animate={{ x: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 4 }}
-          >
-            💡
-          </motion.div>
-          <motion.div
-            className="absolute text-2xl"
-            style={{ bottom: "0", right: "20px" }}
-            animate={{ scale: [1, 1.3, 1] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-          >
-            👾
-          </motion.div>
-        </motion.div>
-      </motion.div>
+      
     </motion.section>
   );
 }
