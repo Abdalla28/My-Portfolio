@@ -48,7 +48,7 @@ export default function ThreeScene() {
       metalness: 0.2,
     });
 
-    const wallColors = [0xffffff, 0xfafafa, 0xf0f0f0];
+    const wallColors = [0x35363b, 0x44454a, 0x23272f];
     const mazeSize = 12;
     const tileSize = 4;
 
