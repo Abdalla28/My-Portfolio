@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Certificates from './components/Certificates';
 import CustomCursor from './components/CustomCursor';
 import { motion, AnimatePresence } from "framer-motion";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import './index.css';
 import './GlobalStyles.css';
 
